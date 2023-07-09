@@ -1,0 +1,66 @@
+header {
+  position: relative;
+  background: #fff;
+  padding: 0;
+  border-bottom: 1px solid #e72929;
+
+  .container {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+
+    a {
+      color: #af1313;
+
+      &:hover {
+        background: #e72929;
+        color: white;
+        cursor: pointer;
+      }
+    }
+
+    .logo {
+      font-weight: bold;
+      padding: 1rem;
+    }
+
+    ul {
+      display: flex;
+      list-style-type: none;
+      margin: 0;
+
+      & a {
+        padding: 1rem;
+        display: inline-block;
+
+        & span {
+          background: #ff4d4d;
+          color: white;
+          padding: 0.1rem 0.45rem;
+          border-radius: 100rem;
+          font-size: 0.9rem;
+        }
+      }
+    }
+
+    &__menu {
+      position: relative;
+
+      &:hover .menu {
+        display: block;
+      }
+
+      .menu {
+        position: absolute;
+        z-index: 1;
+        background: whitesmoke;
+        display: none;
+
+        & a {
+          width: 100%;
+          min-width: 8rem;
+        }
+      }
+    }
+  }
+}
