@@ -10,18 +10,16 @@ import { Food } from 'src/app/shared/models/Food';
 })
 export class HomeComponent implements OnInit {
   foods: Food[] = [];
-  constructor(
-    private foodService: FoodService,
-    private activatedRoot: ActivatedRoute
-  ) {
-    this.activatedRoot.params.subscribe((params) => {
+  constructor(private foodService: FoodService, activatedRoot: ActivatedRoute) {
+    activatedRoot.params.subscribe((params) => {
       if (params.searchTerm)
         this.foods = this.foodService.getAllFoodsBySearchTerm(
           params.searchTerm
         );
+      else if (params.tag)
+        this.foods = this.foodService.getAllFoodsByTag(params.tag);
       else this.foods = this.foodService.getAll();
     });
-    this.foods = foodService.getAll();
   }
 
   ngOnInit(): void {}
