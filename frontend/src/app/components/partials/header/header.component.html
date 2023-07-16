@@ -4,20 +4,20 @@
 
     <nav>
       <ul>
-        <li>
+        <li *ngIf="!user.token">
           <a routerLink="/login">Login</a>
         </li>
-        <li class="container__menu">
-          <a routerLink="/dashboard"> John </a>
+        <li *ngIf="user.token"  class="container__menu">
+          <a routerLink="/dashboard"> {{ user.name }} </a>
           <div class="menu">
             <a routerLink="/profile">Profile</a>
             <a routerLink="/orders">Orders</a>
-            <a>Logout</a>
+            <a (click)="logout()">Logout</a>
           </div>
         </li>
         <li>
           <a routerLink="/cart-page">
-            Cart <span>3</span>
+            Cart <span *ngIf="cartQuantity"> {{ cartQuantity }} </span>
           </a>
         </li>
       </ul>
