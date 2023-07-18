@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnChanges, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { icon, LatLng, LatLngExpression, LatLngTuple, LeafletMouseEvent, map, Map, marker, Marker, tileLayer } from 'leaflet';
 import { LocationService } from 'src/app/services/location.service';
 import { Order } from 'src/app/shared/models/Order';
@@ -8,7 +8,7 @@ import { Order } from 'src/app/shared/models/Order';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements OnChanges {
+export class MapComponent implements OnInit, OnChanges {
   @Input()
   order!:Order;
   @Input()
@@ -37,6 +37,11 @@ export class MapComponent implements OnChanges {
       this.showLocationOnReadonlyMode();
     }
   }
+
+  ngOnInit(): void {
+      this.initializeMap()
+  }
+  
   showLocationOnReadonlyMode() {
     const m = this.map;
     this.setMarker(this.addressLatLng);
