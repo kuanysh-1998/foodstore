@@ -34,6 +34,7 @@ export class CheckoutPageComponent implements OnInit {
       name: [name, Validators.required],
       address: [address, Validators.required],
     });
+    
   }
 
   get fc() {
