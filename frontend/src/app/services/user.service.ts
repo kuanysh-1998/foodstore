@@ -2,7 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-import { USER_LOGIN_URL, USER_REGISTER_URL } from '../shared/constants/urls';
+import {
+  BASE_URL,
+  USER_LOGIN_URL,
+  USER_REGISTER_URL,
+} from '../shared/constants/urls';
 import { IUserLogin } from '../shared/interfaces/IUserLogin';
 import { User } from '../shared/models/User';
 import { IUserRegister } from '../shared/interfaces/IUserRegister';
@@ -67,6 +71,24 @@ export class UserService {
       })
     );
   }
+
+  updateUserInfo(data: User): Observable<User> {
+    return this.http.put<User>(`http://localhost:5000/api/users/${this.currentUser.id}`, data).pipe(
+      tap({
+        next: (user) => {
+          this.setUserToLocalStorage(user);
+          this.userSubject.next(user);
+          this.toastrService.success(
+            'Updated!'
+          );
+        },
+        error: (errorResponse) => {
+          this.toastrService.error(errorResponse.error, 'Updating Failed');
+        },
+      })
+    );
+  }
+
   private setUserToLocalStorage(user: User) {
     localStorage.setItem(USER_KEY, JSON.stringify(user));
   }

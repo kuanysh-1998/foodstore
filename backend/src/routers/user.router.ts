@@ -61,6 +61,34 @@ router.post(
   })
 );
 
+router.put(
+  "/:id",
+  asyncHandler(async (req, res) => {
+    const userId = req.params.id;
+    const { name, email, address, isAdmin } = req.body;
+
+    // Находим пользователя по id
+    const user = await UserModel.findById(userId);
+
+    if (!user) {
+      // Если пользователь не найден, отправляем ошибку
+      res.status(HTTP_BAD_REQUEST).send("User not found!");
+      return;
+    }
+
+    // Обновляем данные пользователя
+    user.name = name;
+    user.email = email.toLowerCase();
+    user.address = address;
+    user.isAdmin = isAdmin;
+
+    // Сохраняем обновленные данные в базе данных
+    const updatedUser = await user.save();
+
+    res.send(updatedUser);
+  })
+);
+
 const generateTokenReponse = (user: User) => {
   const token = jwt.sign(
     {

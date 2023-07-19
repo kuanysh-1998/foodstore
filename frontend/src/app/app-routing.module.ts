@@ -10,6 +10,7 @@ import { CheckoutPageComponent } from './components/pages/checkout-page/checkout
 import { AuthGuard } from './auth/guards/auth.guard';
 import { PaymentPageComponent } from './components/pages/payment-page/payment-page.component';
 import { OrderTrackPageComponent } from './components/pages/order-track-page/order-track-page.component';
+import { ForMyselfComponent } from './components/pages/for-myself/for-myself.component';
 
 const routes: Routes = [
   {
@@ -54,6 +55,10 @@ const routes: Routes = [
     path: 'track/:orderId',
     component: OrderTrackPageComponent,
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'formyself',
+    component: ForMyselfComponent,
   },
 ];
 
