@@ -11,7 +11,7 @@
         <li *ngIf="user.token"  class="container__menu">
           <a routerLink="/dashboard"> {{ user.name }} </a>
           <div class="menu">
-            <a routerLink="/formyself">Profile</a>
+            <a routerLink="/profile">Profile</a>
             <a routerLink="/orders">Orders</a>
             <a (click)="logout()">Logout</a>
           </div>

@@ -13,7 +13,7 @@ const app = express();
 app.use(express.json());
 app.use(cors({
     credentials:true,
-    origin:["http://localhost:4200"]
+    origin:["https://foodstore-wd4c.onrender.com"]
 }));
 
 app.use("/api/foods", foodRouter);

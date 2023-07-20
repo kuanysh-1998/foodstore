@@ -1,0 +1,35 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    row-gap: 15px;
+
+    div {
+      display: flex;
+      flex-direction: column;
+
+      input {
+        padding: 10px;
+        outline: none;
+        font-size: 1rem;
+        border-radius: 8px;
+      }
+    }
+
+    button {
+      padding: 10px;
+      background: black;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+  }
+}

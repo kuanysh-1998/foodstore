@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import {
   BASE_URL,
+  UPDATE_USER_INFO_URL,
   USER_LOGIN_URL,
   USER_REGISTER_URL,
 } from '../shared/constants/urls';
@@ -73,20 +74,20 @@ export class UserService {
   }
 
   updateUserInfo(data: User): Observable<User> {
-    return this.http.put<User>(`http://localhost:5000/api/users/${this.currentUser.id}`, data).pipe(
-      tap({
-        next: (user) => {
-          this.setUserToLocalStorage(user);
-          this.userSubject.next(user);
-          this.toastrService.success(
-            'Updated!'
-          );
-        },
-        error: (errorResponse) => {
-          this.toastrService.error(errorResponse.error, 'Updating Failed');
-        },
-      })
-    );
+    return this.http
+      .put<User>(UPDATE_USER_INFO_URL + this.currentUser.id, data)
+      .pipe(
+        tap({
+          next: (user) => {
+            this.setUserToLocalStorage(user);
+            this.userSubject.next(user);
+            this.toastrService.success('You updated your info succesfully!');
+          },
+          error: (errorResponse) => {
+            this.toastrService.error(errorResponse.error, 'Updating Failed');
+          },
+        })
+      );
   }
 
   private setUserToLocalStorage(user: User) {

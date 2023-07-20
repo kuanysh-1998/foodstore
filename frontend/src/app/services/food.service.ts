@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { sample_foods, sample_tags } from 'src/data';
+import { BehaviorSubject, Observable } from 'rxjs';
 import {
   FOODS_BY_ID_URL,
   FOODS_BY_SEARCH_URL,
@@ -32,10 +31,11 @@ export class FoodService {
 
   getAllFoodsByTag(tag: string): Observable<Food[]> {
     return tag === 'All'
-      ? this.getAll() : this.http.get<Food[]>(FOODS_BY_TAG_URL + tag);
+      ? this.getAll()
+      : this.http.get<Food[]>(FOODS_BY_TAG_URL + tag);
   }
 
   getFoodById(foodId: string): Observable<Food> {
-    return this.http.get<Food>(FOODS_BY_ID_URL + foodId)
+    return this.http.get<Food>(FOODS_BY_ID_URL + foodId);
   }
 }

@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-for-myself',
-  templateUrl: './for-myself.component.html',
-  styleUrls: ['./for-myself.component.scss'],
+  selector: 'app-profile-page',
+  templateUrl: './profile-page.component.html',
+  styleUrls: ['./profile-page.component.scss'],
 })
-export class ForMyselfComponent implements OnInit {
+export class ProfilePageComponent implements OnInit {
   profileForm!: FormGroup;
 
   constructor(
